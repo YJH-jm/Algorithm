@@ -1,3 +1,3 @@
-# GitHub
+# ALGORITHM
 
-Github setting 및 오류 관련 파일 업로드
+study - python으로 구현한 알고리즘 파일 모음
