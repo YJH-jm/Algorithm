@@ -7,10 +7,10 @@ char stack[MAX];
 
 int main()
 {
-  int len = strlen(input), stack_len = 0; 
-  bool flag = false;
+  int len, stack_len = 0; 
   
   scanf("%s", input);
+  len = strlen(input);
   
   for(int i = 0; i < len; i++)
   {
@@ -19,12 +19,13 @@ int main()
       stack[stack_len] = input[i];
       stack_len++;
     }
+    
     else if(input[i] == ')')
     {
       if(stack_len <= 0) 
       {
-        flag = true;
-        break;
+        printf("NO\n");
+        return 0;
       }
       
       else 
@@ -34,10 +35,8 @@ int main()
       }
     }
   }
-  
-  if(!flag && stack_len != 0) flag = true;
-  printf(stack_len);
-  if(flag) printf("NO\n");
+ 
+  if(stack_len != 0) printf("NO\n");
   else printf("YES\n");
   
   return 0;
