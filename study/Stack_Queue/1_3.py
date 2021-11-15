@@ -42,3 +42,50 @@ def solution(bridge_length, weight, truck_weights):
             cur_time[t] += 1
             
     return answer
+
+
+def solution2(bridge_length, weight, truck_weights):
+    answer = 0
+
+    cur_length = 0
+    cur_weight = 0
+    on_bridge = []
+    on_bridge_time = []
+    while truck_weights or on_bridge:
+        idx = 0
+        answer += 1
+        
+        if on_bridge:  
+
+            if  on_bridge_time[0] == bridge_length:
+                cur_length -= 1
+                a = on_bridge.pop(0)
+                # print(" ---- ", a )
+                cur_weight -= a
+                on_bridge_time.pop(0)
+                
+            for i in range(len(on_bridge)):
+                on_bridge_time[i] += 1
+
+
+        if truck_weights and cur_length + 1 <= bridge_length and cur_weight + truck_weights[0] <= weight:
+            cur_weight += truck_weights[0]
+            cur_length += 1
+            on_bridge.append(truck_weights[0])
+            on_bridge_time.append(1)
+            truck_weights.pop(0)
+
+    return answer
+
+
+if __name__ == "__main__":
+    bridge_length = 2
+    weight = 10
+    truck_weights = [7,4,5,6]
+
+
+    bridge_length = 100
+    weight = 100
+    truck_weights = [10,10,10,10,10,10,10,10,10,10]	
+
+    print(solution(bridge_length, weight, truck_weights))

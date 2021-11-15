@@ -12,6 +12,7 @@ QUEUE/STACK - 기능개발 : https://programmers.co.kr/learn/courses/30/lessons/
 풀고 난 후
 1. 코드를 작성 할 때 pop을 해도 list 범위에 문제가 가지 않게 잘 설정 할 것!
 '''
+
 def solution(progresses, speeds):
     answer = []
     
@@ -38,4 +39,26 @@ def solution(progresses, speeds):
         if flag: # 배포된 것이 있으면
             answer.append(count)
             
+    return answer
+
+
+def solution2(progresses, speeds):
+    answer = []
+    while progresses:
+        cnt = 0
+        for i in range(len(progresses)):
+            progresses[i] += speeds[i]
+        
+        while True and progresses: 
+            if progresses[0] >= 100:
+                cnt += 1
+                progresses.pop(0)
+                speeds.pop(0)
+
+            else:
+                break
+            
+        if cnt != 0:
+            answer.append(cnt)
+
     return answer
